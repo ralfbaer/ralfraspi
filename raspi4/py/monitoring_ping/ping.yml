@@ -1,0 +1,8 @@
+config:
+  scrapetime: 30
+
+  InfluxDB_URL: 172.16.1.204:8086
+  InfluxDB_ORG: privat
+  InfluxDB_BUCKET: ping@home
+  InfluxDB_Measurement: ping
+  InfluxDB_APIKey: ah-dUdevAI4rmxGf8vJTAgQQHFhb-qyr7YoK2-E2YNb4MqN9yt21ls9jKnj11DydjIHm7geJpo0UXMh6BcvoTA==
