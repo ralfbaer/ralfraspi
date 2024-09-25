@@ -1,5 +1,11 @@
 config:
   scrapetime: 30
+  scrapelist:
+    - "tgnet.de:80"
+    - "wikipedia.com:80"
+    - "BaerNas:80"
+
+  pingtimeout: 10
 
   InfluxDB_URL: 172.16.1.204:8086
   InfluxDB_ORG: privat

@@ -13,8 +13,10 @@ def doPing(hosts):
     json_body = []
     measurement = App_Config.get("config.InfluxDB_Measurement")
     for host in hosts:
+        port=host.split(":")[1]
+        host=host.split(":")[0]
         body={}
-        ping = Ping(host, 80, 60)
+        ping = Ping(host, int(port), App_Config.get("config.pingtimeout"))
         try:
             ping.ping(1)
             body.update({"measurement": measurement, "tags":{"host":host}, "fields": {"value": ping._conn_times[0]}})
@@ -44,7 +46,7 @@ if __name__ == '__main__':
     while True:
         try:
             print(str(datetime.datetime.now())+": run ping...")
-            doPing(["tgnet.de","wikipedia.com", "BaerNas"])
+            doPing(App_Config.get("config.scrapelist"))
             print(str(datetime.datetime.now())+": ping finished")
             sleep(App_Config.get("config.scrapetime"))
         except Exception as ex:
