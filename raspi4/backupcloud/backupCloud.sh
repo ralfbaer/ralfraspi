@@ -26,7 +26,7 @@ echo "start new rclone " `date +%Y-%m-%d_%H:%M`
 
 
 rclone sync $mountpath/Dokumente RB_Onedrive_enc:/Dokumente --config $path_to_log/rclone.conf --log-file=$path_to_log/RCLONE_Dokumente.log --log-level=INFO & 
-rclone sync $mountpath/Bilder RB_Onedrive_enc:/Dokumente --config $path_to_log/rclone.conf --log-file=$path_to_log/RCLONE_Bilder.log --log-level=INFO & 
+rclone sync $mountpath/Bilder RB_Onedrive_enc:/Bilder --config $path_to_log/rclone.conf --log-file=$path_to_log/RCLONE_Bilder.log --log-level=INFO & 
 
 
 echo "finished rclone sync " `date +%Y-%m-%d_%H:%M`

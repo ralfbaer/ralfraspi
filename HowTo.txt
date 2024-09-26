@@ -47,3 +47,6 @@ sudo nano /etc/fstab
 UUID=001F-8646   /mnt/usb   exfat   auto,nofail,sync,users,rw,umask=000   0   0
 /dev/sda1 /mnt/SSD240 ext4 defaults 0 2
 //BaerNas/data /mnt/BaerNas cifs username=baernasuser,password=Americanpie01
+
+crontab
+* 0 * * * /mnt/SSD240/ralf_raspi/raspi4/backupcloud/backupCloud.sh
