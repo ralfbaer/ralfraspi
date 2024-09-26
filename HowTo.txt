@@ -1,0 +1,49 @@
+IP: 127.16.1.204
+ssh Port: 5300
+user: pi
+password: AmpiRP2308
+
+Grafana:
+http://172.16.1.203:3000/
+user: admin
+password: admin
+
+Alle Folder, mit entsprechenden rechten setzen
+sudo chmod 775 data/grafana
+sudo chmod 775 data/grafana/dashboards
+sudo chmod 775 data/grafana/data
+sudo chmod 775 data/grafana/provisioning
+
+prometheus
+http://172.16.1.203:9090/
+
+Alle Folder, mit entsprechenden rechten setzen
+sudo chmod 775 data/prometheus
+sudo chmod 775 data/prometheus/_cfg
+sudo chmod 775 data/prometheus/_data
+
+
+InfluxDB:
+http://172.16.1.203:8086
+user: admin
+password InfluxRP2308
+orga: privat
+admin-apikey:
+b17w0y9lMAeR-pjsxUsE2fPV9MbDdIYDkY6y91uG79gKPPD6vxjHv0QySpOWL0qaSlW3Cef1jZ_YrQrAUCiCSg==
+
+Show Banner after login:  
+cat /etc/motd
+
+USB/SSD mounten:
+https://www.elektronik-kompendium.de/sites/raspberry-pi/2012181.htm
+Wenn SSD falsches Format
+https://u-labs.de/portal/usb-festplatte-am-raspberry-pi-formatieren-und-automatisch-einhaengen-mounten/
+
+mount NAS:
+sudo mount -t cifs //172.16.1.171/data /mnt/BaerNas -o user=baernasuser,pass=Americanpie01
+
+Mount in fstab
+sudo nano /etc/fstab
+UUID=001F-8646   /mnt/usb   exfat   auto,nofail,sync,users,rw,umask=000   0   0
+/dev/sda1 /mnt/SSD240 ext4 defaults 0 2
+//BaerNas/data /mnt/BaerNas cifs username=baernasuser,password=Americanpie01
