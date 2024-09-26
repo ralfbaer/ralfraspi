@@ -1,7 +1,17 @@
 IP: 127.16.1.204
-ssh Port: 5300
+ssh Port: 22
 user: pi
 password: AmpiRP2308
+
+statische ip einrichten:
+sudo nano /etc/network/interfaces
+# Ethernet
+auto eth0
+allow-hotplug eth0
+iface eth0 inet static
+address 172.16.1.204
+netmask 255.255.255.0
+gateway 172.16.1.1
 
 Grafana:
 http://172.16.1.203:3000/
