@@ -7,9 +7,9 @@ services:
       - 3000:3000
     volumes:
       #- grafana_data:/var/lib/grafana
-      - /home/pi/ralf_raspi/raspi4/monitoríng/data/grafana/data:/var/lib/grafana
-      - /home/pi/ralf_raspi/raspi4/monitoríng/data/grafana/dashboards:/var/lib/grafana/dashboards
-      - /home/pi/ralf_raspi/raspi4/monitoríng/data/grafana/provisioning:/etc/grafana/provisioning
+      - /mnt/SSD240/data/grafana/data:/var/lib/grafana
+      - /mnt/SSD240/data/grafana/dashboards:/var/lib/grafana/dashboards
+      - /mnt/SSD240/data/grafana/provisioning:/etc/grafana/provisioning
       #- ./grafana/config/custom.ini:/etc/grafana/grafana.ini
       #- ./grafana/certs:/etc/ssl:ro
     restart: always
@@ -21,9 +21,9 @@ services:
     image: prom/prometheus:latest
     user: root
     volumes:
-      - /home/pi/ralf_raspi/raspi4/monitoríng/data/prometheus/_conf:/etc/prometheus/
+      - /mnt/SSD240/data/prometheus/_conf:/etc/prometheus/
      # - ./prometheus_conf:/etc/prometheus/
-      - /home/pi/ralf_raspi/raspi4/monitoríng/data/prometheus/_data:/prometheus
+      - /mnt/SSD240/data/prometheus/_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -46,9 +46,9 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - /home/pi/ralf_raspi/raspi4/monitoríng/data/influxdb/data:/var/lib/influxdb
-      - /home/pi/ralf_raspi/raspi4/monitoríng/data/influxdb.conf:/etc/influxdb/influxdb.conf:ro
-      - /home/pi/ralf_raspi/raspi4/monitoríng/data/influxdb/init:/docker-entrypoint-initdb.d
+      - /mnt/SSD240/data/influxdb/data:/var/lib/influxdb
+      - /mnt/SSD240/data/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+      - /mnt/SSD240/data/influxdb/init:/docker-entrypoint-initdb.d
 
  cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
