@@ -7,9 +7,9 @@ services:
       - 3000:3000
     volumes:
       #- grafana_data:/var/lib/grafana
-      - /mnt/SSD240/data/grafana/data:/var/lib/grafana
-      - /mnt/SSD240/data/grafana/dashboards:/var/lib/grafana/dashboards
-      - /mnt/SSD240/data/grafana/provisioning:/etc/grafana/provisioning
+      - /home/pi/data/grafana/data:/var/lib/grafana
+      - /home/pi/data/grafana/dashboards:/var/lib/grafana/dashboards
+      - /home/pi/data/grafana/provisioning:/etc/grafana/provisioning
       #- ./grafana/config/custom.ini:/etc/grafana/grafana.ini
       #- ./grafana/certs:/etc/ssl:ro
     restart: always
@@ -21,7 +21,7 @@ services:
     image: prom/prometheus:latest
     user: root
     volumes:
-      - /mnt/SSD240/data/prometheus/_conf:/etc/prometheus/
+      - /home/pi/data/prometheus/_conf:/etc/prometheus/
      # - ./prometheus_conf:/etc/prometheus/
       - /mnt/SSD240/data/prometheus/_data:/prometheus
     command:
@@ -41,14 +41,19 @@ services:
     image: influxdb:latest
     container_name: influxdb
     restart: always
+    user: "1000:1000"
     networks: 
       - monitoring
     ports:
       - "8086:8086"
+    #volumes:
+    #  - /mnt/SSD240/data/influxdb/data:/var/lib/influxdb
+    #  - /mnt/SSD240/data/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+    #  - /mnt/SSD240/data/influxdb/init:/docker-entrypoint-initdb.d
     volumes:
-      - /mnt/SSD240/data/influxdb/data:/var/lib/influxdb
-      - /mnt/SSD240/data/influxdb.conf:/etc/influxdb/influxdb.conf:ro
-      - /mnt/SSD240/data/influxdb/init:/docker-entrypoint-initdb.d
+      - /home/pi/data/config:/etc/influxdb2
+      - /home/pi/data/influxdb2/data:/home/influxdb/.influxdbv2/      
+      - /home/pi/data/influxdb2/influxdb2:/etc/defaults/influxdb2      
 
  cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest

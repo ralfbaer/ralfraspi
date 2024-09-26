@@ -11,4 +11,4 @@ config:
   InfluxDB_ORG: privat
   InfluxDB_BUCKET: ping@home
   InfluxDB_Measurement: ping
-  InfluxDB_APIKey: FWYVZNSsQqn-vEqJtw2fCFR62jVDulFIagJZShWpAUnFrukDHPa7gPcLxGkijsF7bLndm12EM7EZbWZTLDrkFQ==
+  InfluxDB_APIKey: gy0Hg9H7VwkxzkSFy0nv8yLIZJdaVljWBDBIvv5fGZBHvdtG1JIqH0X7iel8wMev5jLsP27ta342GxL6eJmy5Q==
