@@ -13,12 +13,14 @@ address 172.16.1.204
 netmask 255.255.255.0
 gateway 172.16.1.1
 
-Install Git
-sudo apt update
-sudo apt install git
-
-Install docker + docker-compose
-https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo
+Install dependencies
+  Install Git
+    sudo apt update
+    sudo apt install git
+  Install docker + docker-compose
+    https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo
+  install rclone
+    sudo apt rclone
 
 Grafana:
 http://172.16.1.203:3000/
