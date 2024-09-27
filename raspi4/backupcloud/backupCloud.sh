@@ -11,7 +11,7 @@
 ### sudo apt-get install rclone
 #RB_onedrive_enc:AmpiODENC2308:080400e
 
-mountpath=/mnt/BaerNasBackup
+mountpath=/mnt/BaerNas
 path_to_log=$mountpath/Raspberry/nasbackup/
 logfile=RCLONE.log
 path_to_clone=$mountpath/Dokumente
