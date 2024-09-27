@@ -23,7 +23,7 @@ https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-
 Grafana:
 http://172.16.1.203:3000/
 user: admin
-password: admin
+password: GrafanaRP2308
 
 Alle Folder, mit entsprechenden rechten setzen
 sudo chmod 775 data/grafana
@@ -67,3 +67,15 @@ UUID=001F-8646   /mnt/usb   exfat   auto,nofail,sync,users,rw,umask=000   0   0
 
 crontab
 * 0 * * * /mnt/SSD240/ralf_raspi/raspi4/backupcloud/backupCloud.sh
+
+chrome nur schmierzeichen:
+https://forums.raspberrypi.com/viewtopic.php?t=359125
+
+autostart webside on startup
+sudo nano ~/.config/lxsession/LXDE-pi/autostart
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+@xscreensaver -no-splash
+point-rpi
+@chromium-browser --start-fullscreen --start-maximized https://localhost:3000
+  
