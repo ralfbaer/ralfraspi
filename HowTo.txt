@@ -79,3 +79,5 @@ sudo nano ~/.config/lxsession/LXDE-pi/autostart
 point-rpi
 @chromium-browser --start-fullscreen --start-maximized https://localhost:3000
   
+autostart grafana on GUI on startup
+https://github.com/grafana/grafana-kiosk
