@@ -81,3 +81,5 @@ point-rpi
   
 autostart grafana on GUI on startup
 https://github.com/grafana/grafana-kiosk
+to run with "autostart webside on startup" and last line
+@grafana-kiosk -c <pathToConfig>/config.yaml
