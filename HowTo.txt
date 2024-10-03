@@ -41,6 +41,11 @@ sudo chmod 775 data/prometheus
 sudo chmod 775 data/prometheus/_cfg
 sudo chmod 775 data/prometheus/_data
 
+fritzbox-exporter prometheus
+https://github.com/pdreker/fritz_exporter
+user: fb-wlan-prom
+pwd: AmpiFB-Prom-2308
+
 
 InfluxDB:
 http://172.16.1.203:8086

@@ -7,7 +7,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '../',
 
 from config import app_config
 
-
 def doPing(hosts):
     from tcping import Ping
     json_body = []
@@ -19,11 +18,13 @@ def doPing(hosts):
         ping = Ping(host, int(port), App_Config.get("config.pingtimeout"))
         try:
             ping.ping(1)
+            if ping._failed == 1:
+                raise Exception(ping.result.raw)
             body.update({"measurement": measurement, "tags":{"host":host}, "fields": {"value": ping._conn_times[0]}})
             json_body.append(body)
             pass
         except Exception as ex:
-            body.update({"measurement": measurement, "tags":{"host":host}, "fields": {"value": -1}})
+            body.update({"measurement": measurement, "tags":{"host":host}, "fields": {"value": -100.0}})
             json_body.append(body)
             print(str(ex))
     pass

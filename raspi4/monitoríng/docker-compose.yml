@@ -1,5 +1,5 @@
 services:
- grafana:
+  grafana:
     image: grafana/grafana
 
 
@@ -17,7 +17,7 @@ services:
        -  monitoring
     container_name: grafana
 
- prometheus:
+  prometheus:
     image: prom/prometheus:latest
     user: root
     volumes:
@@ -37,7 +37,7 @@ services:
        - monitoring
     container_name: prometheus
 
- influxdb:
+  influxdb:
     image: influxdb:latest
     container_name: influxdb
     restart: always
@@ -55,7 +55,7 @@ services:
       - /mnt/SSD240/data/influxdb2/data:/home/influxdb/.influxdbv2/      
       - /mnt/SSD240/data/influxdb2/influxdb2:/etc/defaults/influxdb2      
 
- cadvisor:
+  cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
     restart: unless-stopped
@@ -69,7 +69,7 @@ services:
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
 
- nodeexporter:
+  nodeexporter:
     image: prom/node-exporter:latest
     container_name: nodeexporter
     restart: unless-stopped
@@ -86,7 +86,16 @@ services:
       - 9100:9100
     networks:
       - monitoring
-
+  fritz-exporter:
+    image: pdreker/fritz_exporter:2
+    container_name: fritz-exporter
+    restart: unless-stopped
+    environment:
+      FRITZ_HOSTNAME: '172.16.1.190'
+      FRITZ_USERNAME: 'fb-wlan-prom'
+      FRITZ_PASSWORD: 'AmpiFB-Prom-2308'
+    ports:
+      - "9787:9787"
 
 networks:
     monitoring:
