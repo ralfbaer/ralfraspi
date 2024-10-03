@@ -87,7 +87,7 @@ services:
     networks:
       - monitoring
   fritz-exporter:
-    image: pdreker/fritz_exporter:2
+    image: pdreker/fritz_exporter:latest
     container_name: fritz-exporter
     restart: unless-stopped
     environment:
