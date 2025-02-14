@@ -91,9 +91,9 @@ services:
     container_name: fritz-exporter
     restart: unless-stopped
     environment:
-      FRITZ_HOSTNAME: 'raspberrypi.fritz.box'
-      FRITZ_USERNAME: 'fb-wlan-prom'
-      FRITZ_PASSWORD: 'AmpiFB-Prom-2308'
+      FRITZ_HOSTNAME: 192.168.188.1
+      FRITZ_USERNAME: fb-prom
+      FRITZ_PASSWORD: dkjldsg678wjlksdso&uiuee(/8
     ports:
       - "9787:9787"
 
