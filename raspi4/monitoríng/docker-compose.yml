@@ -1,8 +1,6 @@
 services:
   grafana:
-    image: grafana/grafana
-
-
+    image: grafana/grafana:latest
     ports:
       - 3000:3000
     volumes:
@@ -16,10 +14,12 @@ services:
     networks:
        -  monitoring
     container_name: grafana
+    user: "root"
 
   prometheus:
-    image: prom/prometheus:latest
-    user: root
+    image: prom/prometheus:v3.4.2
+#    image: prom/prometheus
+#    user: root
     volumes:
       - /mnt/SSD240/data/prometheus/_conf:/etc/prometheus/
      # - ./prometheus_conf:/etc/prometheus/
@@ -33,15 +33,15 @@ services:
     ports:
       - 9090:9090
     restart: always
-    networks: 
+    networks:
        - monitoring
     container_name: prometheus
-
+    user: "root"
   influxdb:
     image: influxdb:latest
     container_name: influxdb
     restart: always
-    user: "1000:1000"
+    #user: "root"
     networks: 
       - monitoring
     ports:
@@ -52,25 +52,26 @@ services:
     #  - /mnt/SSD240/data/data/influxdb/init:/docker-entrypoint-initdb.d
     volumes:
       - /mnt/SSD240/data/config:/etc/influxdb2
-      - /mnt/SSD240/data/influxdb2/data:/home/influxdb/.influxdbv2/      
-      - /mnt/SSD240/data/influxdb2/influxdb2:/etc/defaults/influxdb2      
+      - /mnt/SSD240/data/influxdb2/data:/home/influxdb/.influxdbv2/
+      - /mnt/SSD240/data/influxdb2/influxdb2:/etc/defaults/influxdb2
 
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
+    image: klo2k/cadvisor:latest
     container_name: cadvisor
     restart: unless-stopped
     networks:
       - monitoring
     ports:
-    - 9101:8080
+      - 9101:8080
     volumes:
-    - /:/rootfs:ro
-    - /var/run:/var/run:rw
-    - /sys:/sys:ro
-    - /var/lib/docker/:/var/lib/docker:ro
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    user: "root"
 
   nodeexporter:
-    image: prom/node-exporter:latest
+    image: quay.io/prometheus/node-exporter:latest
     container_name: nodeexporter
     restart: unless-stopped
     volumes:
@@ -86,12 +87,13 @@ services:
       - 9100:9100
     networks:
       - monitoring
+    user: "root"
   fritz-exporter:
     image: pdreker/fritz_exporter:latest
     container_name: fritz-exporter
     restart: unless-stopped
     environment:
-      FRITZ_HOSTNAME: 192.168.188.1
+      FRITZ_HOSTNAME: fritz.box
       FRITZ_USERNAME: fb-prom
       FRITZ_PASSWORD: dkjldsg678wjlksdso&uiuee(/8
     ports:
