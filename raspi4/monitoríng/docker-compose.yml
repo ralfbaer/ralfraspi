@@ -5,9 +5,9 @@ services:
       - 3000:3000
     volumes:
       #- grafana_data:/var/lib/grafana
-      - /mnt/SSD240/data/grafana/data:/var/lib/grafana
-      - /mnt/SSD240/data/grafana/dashboards:/var/lib/grafana/dashboards
-      - /mnt/SSD240/data/grafana/provisioning:/etc/grafana/provisioning
+      - /home/baer/gitrepos/ralfraspi/data/grafana/data:/var/lib/grafana
+      - /home/baer/gitrepos/ralfraspi/data/grafana/dashboards:/var/lib/grafana/dashboards
+      - /home/baer/gitrepos/ralfraspi/data/grafana/provisioning:/etc/grafana/provisioning
       #- ./grafana/config/custom.ini:/etc/grafana/grafana.ini
       #- ./grafana/certs:/etc/ssl:ro
     restart: always
@@ -21,9 +21,8 @@ services:
 #    image: prom/prometheus
 #    user: root
     volumes:
-      - /mnt/SSD240/data/prometheus/_conf:/etc/prometheus/
-     # - ./prometheus_conf:/etc/prometheus/
-      - /mnt/SSD240/data/prometheus/_data:/prometheus
+      - /home/baer/gitrepos/ralfraspi/data/prometheus/_conf:/etc/prometheus/
+      - /home/baer/gitrepos/ralfraspi/data/prometheus/_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -71,7 +70,8 @@ services:
     user: "root"
 
   nodeexporter:
-    image: quay.io/prometheus/node-exporter:latest
+    #mage: quay.io/prometheus/node-exporter:latest
+    image: prom/node-exporter-linux-arm64:latest
     container_name: nodeexporter
     restart: unless-stopped
     volumes:

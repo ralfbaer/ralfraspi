@@ -15,6 +15,7 @@ mountpath=/mnt/BaerNas
 path_to_log=$mountpath/Raspberry/nasbackup/
 logfile=RCLONE_CloudBackup.log
 path_to_clone=$mountpath/Dokumente
+path_to_cfg=/home/baer/gitrepos/ralfraspi/raspi4/backupcloud
 
 exec > $path_to_log$logfile  2>&1
 
@@ -25,8 +26,8 @@ echo "$0 started: " `date +%Y-%m-%d_%H:%M`
 echo "start new rclone " `date +%Y-%m-%d_%H:%M`
 
 
-rclone sync $mountpath/Dokumente RB_Onedrive_enc:/Dokumente --config $path_to_log/rclone.conf --log-file=$path_to_log/$logfile.dokumente.log --log-level=INFO & 
-rclone sync $mountpath/Bilder RB_Onedrive_enc:/Bilder --config $path_to_log/rclone.conf --log-file=$path_to_log/$logfile.bilder.log --log-level=INFO & 
+rclone sync $mountpath/Dokumente RB_Onedrive_env:BaerNas/Dokumente --config $path_to_cfg/rclone.conf --log-file=$path_to_log/$logfile.dokumente.log --log-level=INFO & 
+rclone sync $mountpath/Bilder RB_Onedrive_env:BaerNas/Bilder --config $path_to_cfg/rclone.conf --log-file=$path_to_log/$logfile.bilder.log --log-level=INFO & 
 
 
 echo "finished rclone sync " `date +%Y-%m-%d_%H:%M`
